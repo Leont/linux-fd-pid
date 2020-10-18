@@ -3,6 +3,8 @@
 #include "perl.h"
 #include "XSUB.h"
 
+#include <signal.h>
+#include <linux/wait.h>
 #include <asm-generic/unistd.h>
 
 #define die_sys(format) Perl_croak(aTHX_ format, strerror(errno))
@@ -52,3 +54,19 @@ send(file_handle, signal)
 		ret = syscall(__NR_pidfd_send_signal, fd, signal, NULL, 0);
 		if (ret < 0)
 			die_sys("Couldn't send signal: %s");
+
+int
+wait(file_handle, flags = WEXITED)
+	SV* file_handle;
+	int flags;
+	PREINIT:
+		int fd, wait_result;
+		siginfo_t info;
+	CODE:
+		fd = get_fd(file_handle);
+		wait_result = waitid(P_PIDFD, fd, &info, flags);
+		if (wait_result != 0)
+			die_sys("Can't wait pid: %s");
+		RETVAL = info.si_status;
+	OUTPUT:
+		RETVAL

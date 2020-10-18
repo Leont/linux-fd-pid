@@ -36,9 +36,11 @@ if ($pid) {
 	$pidfd->send(SIGUSR1);
 	read $in, my $buffer, 4 or die;
 	is($buffer, 'USR1');
+	alarm 2;
+	is($pidfd->wait, 42, 'Pid returns 42');
 }
 else {
 	sleep 1;
-	exit;
+	exit 42;
 }
 done_testing;
