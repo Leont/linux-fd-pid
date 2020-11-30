@@ -29,4 +29,8 @@ This sends a signal to the process.
 
 This waits for the process to end. It's only allowed to be child of the current process. It takes a flags argument like `waitpid`, the constants for this from the L<POSIX|POSIX> module can be used for this.
 
+=method get_handle($fd)
+
+This duplicates a handle from another process. Permission to duplicate another process's file descriptor is governed by a ptrace access mode C<PTRACE_MODE_ATTACH_REALCREDS> check.
+
 =cut
