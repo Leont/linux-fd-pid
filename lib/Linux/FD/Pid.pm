@@ -15,7 +15,7 @@ XSLoader::load(__PACKAGE__, __PACKAGE__->VERSION);
 
  use Linux::FD::Pid
  
- my $fh = Linux::FD::Pid($pid)
+ my $fh = Linux::FD::Pid->new($pid)
 
 =method new($pid)
 
