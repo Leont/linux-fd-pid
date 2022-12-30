@@ -17,9 +17,13 @@ XSLoader::load(__PACKAGE__, __PACKAGE__->VERSION);
  
  my $fh = Linux::FD::Pid->new($pid, @flags)
 
+=head1 DESCRIPTION
+
+This creates a pidfd filehandle that can be used to await the termination of a process. This provides an alternative to using C<SIGCHLD>, and has the advantage that the file descriptor may be monitored by select, poll, and epoll.
+
 =method new($pid)
 
-This creates a pidfd file descriptor that can be used to await the termination of a process. This provides an alternative to using C<SIGCHLD>, and has the advantage that the file descriptor may be monitored by select, poll, and epoll. C<@flags> is an optional list of flags, currently limited to C<'non-blocking'> (requires Linux 2.6.27).
+This creates a new filehandle object for the designated C<$pid>. C<@flags> is an optional list of flags, currently limited to C<'non-blocking'>.
 
 =method send($signo)
 
