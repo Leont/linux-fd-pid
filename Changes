@@ -1,6 +1,8 @@
 Revision history for Linux-FD-Pid
 
 {{$NEXT}}
+
+0.006     2023-01-03 00:45:16+01:00 Europe/Amsterdam
           * Eliminate dependency on glibc 2.36+
 
 0.005     2023-01-02 03:48:36+01:00 Europe/Amsterdam
