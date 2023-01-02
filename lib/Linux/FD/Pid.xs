@@ -6,7 +6,7 @@
 #include <signal.h>
 #include <linux/wait.h>
 #include <sys/syscall.h>
-#include <sys/pidfd.h>
+#include <unistd.h>
 
 #define die_sys(format) Perl_croak(aTHX_ format, strerror(errno))
 
