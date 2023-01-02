@@ -114,8 +114,14 @@ wait(file_handle, flags = WEXITED)
 	CODE:
 		fd = get_fd(file_handle);
 		wait_result = waitid(P_PIDFD, fd, &info, flags);
-		if (wait_result != 0)
-			die_sys("Can't wait pid: %s");
+		if (wait_result != 0) {
+			if (errno == EAGAIN)
+				XSRETURN_UNDEF;
+			else
+				die_sys("Can't wait pid: %s");
+		}
+		if (info.si_signo == 0)
+			XSRETURN_UNDEF;
 		RETVAL = info.si_status;
 	OUTPUT:
 		RETVAL
