@@ -64,7 +64,7 @@ static UV S_get_pid_flag(pTHX_ SV* flag_name) {
 	for (i = 0; i < sizeof pid_flags / sizeof *pid_flags; ++i)
 		if (strEQ(SvPV_nolen(flag_name), pid_flags[i].key))
 			return pid_flags[i].value;
-	Perl_croak(aTHX_ "No such flag '%s' known", flag_name);
+	Perl_croak(aTHX_ "No such flag '%s' known", SvPV_nolen(flag_name));
 }
 #define get_pid_flag(name) S_get_pid_flag(aTHX_ name)
 
