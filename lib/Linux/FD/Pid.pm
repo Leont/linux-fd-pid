@@ -25,9 +25,9 @@ This creates a pidfd filehandle that can be used to await the termination of a p
 
 This creates a new filehandle object for the designated C<$pid>. C<@flags> is an optional list of flags, currently limited to C<'non-blocking'>.
 
-=method send($signo)
+=method send($signal)
 
-This sends a signal to the process.
+This sends a signal to the process. The signal may be given as either a signal number (e.g. C<POSIX::SIGUSR1>) or as a signal name (e.g. C<'USR1'>).
 
 =method wait($flags = WEXITED)
 

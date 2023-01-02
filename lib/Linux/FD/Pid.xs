@@ -94,12 +94,13 @@ new(classname, pid, ...)
 void
 send(file_handle, signal)
 	SV* file_handle;
-	int signal;
+	SV* signal;
 	PREINIT:
 		int fd, ret;
 	CODE:
 		fd = get_fd(file_handle);
-		ret = syscall(__NR_pidfd_send_signal, fd, signal, NULL, 0);
+		int signo = (SvIOK(signal) || looks_like_number(signal)) && SvIV(signal) ? SvIV(signal) : whichsig(SvPV_nolen(signal));
+		ret = syscall(__NR_pidfd_send_signal, fd, signo, NULL, 0);
 		if (ret < 0)
 			die_sys("Couldn't send signal: %s");
 

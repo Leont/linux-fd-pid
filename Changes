@@ -1,6 +1,7 @@
 Revision history for Linux-FD-Pid
 
 {{$NEXT}}
+          * Allow signal name in send method
 
 0.004     2022-12-30 19:02:26+01:00 Europe/Amsterdam
           * Add flag support
