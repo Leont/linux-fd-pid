@@ -1,6 +1,8 @@
 Revision history for Linux-FD-Pid
 
 {{$NEXT}}
+
+0.005     2023-01-02 03:48:36+01:00 Europe/Amsterdam
           * Allow signal name in send method
           * Handle non-blocking wait correctly
 
