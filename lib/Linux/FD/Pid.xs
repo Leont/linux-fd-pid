@@ -74,6 +74,10 @@ MODULE = Linux::FD::Pid				PACKAGE = Linux::FD::Pid
 
 PROTOTYPES: DISABLED
 
+BOOT:
+    load_module(PERL_LOADMOD_NOIMPORT, newSVpvs("IO::Handle"), NULL);
+    av_push(get_av("Linux::FD::Pid::ISA" , GV_ADD), newSVpvs("IO::Handle"));
+
 SV*
 new(classname, pid, ...)
 	const char* classname;

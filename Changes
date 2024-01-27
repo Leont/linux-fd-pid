@@ -1,6 +1,7 @@
 Revision history for Linux-FD-Pid
 
 {{$NEXT}}
+          * Make sure Linux::FD::Pid isa IO::Handle
 
 0.006     2023-01-03 00:45:16+01:00 Europe/Amsterdam
           * Eliminate dependency on glibc 2.36+
