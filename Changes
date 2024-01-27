@@ -1,6 +1,8 @@
 Revision history for Linux-FD-Pid
 
 {{$NEXT}}
+
+0.007     2024-01-27 16:48:47+01:00 Europe/Brussels
           * Make sure Linux::FD::Pid isa IO::Handle
           * Make wait return value a proper wait status
 
