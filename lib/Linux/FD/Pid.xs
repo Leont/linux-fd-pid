@@ -126,7 +126,10 @@ wait(file_handle, flags = WEXITED)
 		}
 		if (info.si_signo == 0)
 			XSRETURN_UNDEF;
-		RETVAL = info.si_status;
+		if (info.si_code == CLD_EXITED)
+			RETVAL = info.si_status << 8;
+		else
+			RETVAL = info.si_status;
 	OUTPUT:
 		RETVAL
 
